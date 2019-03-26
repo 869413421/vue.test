@@ -1,0 +1,51 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Document</title>
+    <script src="https://cdn.jsdelivr.net/npm/vue"></script>
+    <style>
+        [v-claok] {
+            display: none;
+        }
+    </style>
+</head>
+
+<body>
+    <div id="app">
+        <input :value="start" type="button" @click="lang">
+        <input :value="end" type="button" @click="stop">
+        <p v-cloak>{{msg}}</p>
+    </div>
+    <script>
+        var app = new Vue({
+            el: '#app',
+            data: {
+                msg: '这是一个跑马灯效果~~~',
+                inertvalId: null,
+                start: '开始',
+                end: '结束'
+            },
+            methods: {
+                lang() {
+                    if (this.inertvalId != null) return;
+                    this.inertvalId = setInterval(() => {
+                        var start = this.msg.substring(0, 1)
+                        var end = this.msg.substring(1)
+                        this.msg = end + start
+                    }, 400)
+                },
+                stop() {
+                    clearInterval(this.inertvalId)
+                    this.inertvalId = null
+                }
+            },
+        })
+    </script>
+
+</body>
+
+</html>

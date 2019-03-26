@@ -1,0 +1,63 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Document</title>
+    <!--属性选择器 -->
+    <style>
+        [v-cloak] {
+            display: none;
+        }
+    </style>
+</head>
+
+<body>
+
+    <body>
+        <div id="app">
+            <!--v-claok用于解决插值表达式的闪烁问题-->
+            <p v-cloak>{{msg}}</p>
+
+            <!--v-text默认没有闪烁问题，但会把元素内的值全部替换掉-->
+            <!--插值表达式只会替换元素内的占位符。视情况去进行使用-->
+            <h1 v-text="msg"></h1>
+
+            <div v-html="msg2"></div>
+            <!--v-html也会把元素内的值替换掉，但是会对html直接进行渲染-->
+
+            <!--v-bind用于对元素的属性进行绑定，添加v-bind指令后浏览器会将属性当做javascript脚本进行处理-->
+            <input type="button" v-bind:value="myvalue+'添加的文本'">
+
+            <!--v-bind可以简写为一个: 使用了v-bind的属性中可以描述正确的表达式-->
+            <input type="button" :value="myvalue">
+
+            <!--v-on指令用于对元素进行事件的绑定-->
+            <input type="button" value="点击按钮" v-on:click="show">
+        </div>
+
+
+        <script src="https://cdn.jsdelivr.net/npm/vue"></script>
+        <script>
+            var app = new Vue({
+                el: '#app',
+                data: {
+                    msg: '123456',
+                    msg2: '<h1>使用V-HTML对页面直接HTML渲染<h1>',
+                    myvalue: '这是自己绑定的value'
+                },
+                //methods是用于存储事件的一个方法
+                methods: {
+                    show: function (value) {
+                        alert('111111111');
+                    }
+                },
+            })
+        </script>
+    </body>
+
+</body>
+
+</html>
