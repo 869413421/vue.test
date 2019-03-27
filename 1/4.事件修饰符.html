@@ -1,0 +1,65 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <script src="https://cdn.jsdelivr.net/npm/vue"></script>
+    <title>Document</title>
+    <style>
+        .inner {
+            height: 150px;
+            background-color: darkcyan;
+        }
+    </style>
+</head>
+
+<body>
+    <div id="app">
+
+        <!--事件修饰符.stop会阻止事件进行冒泡-->
+        <!--事件冒泡是指在触发内层元素的事件时，外层的元素的事件也会被触发-->
+        <!-- <div class="inner" v-on:click="divHandler">
+            <input type="button" value="点击" v-on:click.stop="btnHandler">
+        </div> -->
+
+        <!--捕获修饰符.capture监听包裹的元素是否触发了事件。如果触发会首先执行自身的事件。再去执行内部元素被点击的事件-->
+        <!-- <div class="inner" v-on:click.capture="divHandler">
+            <input type="button" value="点击" v-on:click="btnHandler">
+        </div> -->
+
+        <!--.prevent修饰符会阻止元素的默认事件，例如表单的submit事件-->
+        <!-- <a href="http://www.baidu.com" v-on:click.prevent="linkHandler">跳转链接</a> -->
+
+        <!--.self修饰符只会被修饰的元素触发，无论是事件冒泡或者事件捕获.capture都不会触发这个元素的事件-->
+        <div class="inner" v-on:click.self="divHandler">
+            <input type="button" value="点击" v-on:click="btnHandler">
+        </div>
+
+        <!--使用once修饰符的元素只会触发一次事件，事件只有在第一次触发时生效-->
+        <a href="http://www.baidu.com" v-on:click.once.prevent="linkHandler">跳转链接</a>
+
+    </div>
+    <script>
+        var app = new Vue({
+            el: '#app',
+            data: {
+
+            },
+            methods: {
+                divHandler() {
+                    console.log('divhandler')
+                },
+                btnHandler() {
+                    console.log('btnhandler')
+                },
+                linkHandler() {
+                    console.log('linhandler')
+                }
+            },
+        })
+    </script>
+</body>
+
+</html>

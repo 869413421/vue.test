@@ -1,0 +1,61 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Document</title>
+    <script src="https://cdn.jsdelivr.net/npm/vue"></script>
+    <style>
+        .red {
+            color: aquamarine
+        }
+
+        .thin {
+            font-weight: 300
+        }
+
+        .active {
+            font-size: small;
+        }
+    </style>
+</head>
+
+<body>
+    <div id="app">
+        <!--直接以数组的方式进行储存-->
+        <h1 :class="['red','thin','active']">这是一个H1</h1>
+
+        <!--可以在绑定数组中使用三元表达式-->
+        <h1 :class="['red','thin',flag?'active':'']">这是一个H1</h1>
+
+        <!--可以在绑定数组当中去嵌套对象-->
+        <h1 :class="['red','thin',{'active':true}]">这是一个H1</h1>
+
+        <!--直接使用对象对样式进行绑定-->
+        <h1 :class="classObj">这是一个H1</h1>
+        <input type="button" value="改变样式" @click="changClass">
+    </div>
+    <script>
+        var vm = new Vue({
+            el: '#app',
+            data: {
+                flag: true,
+                classObj: { red: true, thin: true, active: false }
+            },
+            methods: {
+                changClass() {
+                    if (this.classObj.active == false) {
+                        this.classObj.active = true;
+                    } else {
+                        this.classObj.active = false;
+                    }
+
+                }
+            }
+        });
+    </script>
+</body>
+
+</html>
