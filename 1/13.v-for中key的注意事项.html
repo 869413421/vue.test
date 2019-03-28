@@ -1,0 +1,44 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Document</title>
+    <script src="https://cdn.jsdelivr.net/npm/vue"></script>
+</head>
+
+<body>
+    <div id="app">
+        <!--key值用于保证数据的唯一，key中只允许绑定数字或者字符串-->
+        ID<input type="text" v-model="id">
+        名称<input type="text" v-model="name">
+        <input type="button" value="添加" @click="add">
+        <p v-for="(item, index) in list" :key="item.id">
+            <input type="checkbox" :name="item.id" id="">{{item.id}}{{item.name}}
+        </p>
+    </div>
+    <script>
+        var vm = new Vue({
+            el: '#app',
+            data: {
+                id: null,
+                name: null,
+                list: [
+                    { id: 1, name: '小明' },
+                    { id: 2, name: '小东' },
+                    { id: 3, name: '小东' },
+                    { id: 4, name: '小东' },
+                ]
+            },
+            methods: {
+                add() {
+                    this.list.push({ id: this.id, name: this.name })
+                }
+            }
+        });
+    </script>
+</body>
+
+</html>

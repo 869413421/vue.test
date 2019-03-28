@@ -1,0 +1,30 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Document</title>
+    <script src="https://cdn.jsdelivr.net/npm/vue"></script>
+</head>
+
+<body>
+    <div id="app">
+        <!--可以通过对象对内联样式进行绑定，对象内的css有横岗必须要用单引号-->
+        <h1 :style="{color:'red','font-size':200}">测试1</h1>
+        <h2 :style="[styleObj1,styleObj2]">测试2</h2>
+    </div>
+    <script>
+        var vm = new Vue({
+            el: '#app',
+            data: {
+                styleObj1: { color: 'red', 'font-size': 200 },
+                styleObj2: { 'font-width': 200 }
+            },
+            methods: {}
+        });
+    </script>
+</body>
+
+</html>
