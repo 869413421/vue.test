@@ -1,0 +1,33 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Document</title>
+    <script src="https://cdn.jsdelivr.net/npm/vue"></script>
+</head>
+
+<body>
+    <div id="app">
+        <p>{{msg|strFormat('我是添加的')|test}}</p>
+    </div>
+    <script>
+        Vue.filter('strFormat', function (msg, arg1) {
+            return msg.replace(/山/g, '屎') + arg1
+        })
+        Vue.filter('test', function (data) {
+            return data + '============'
+        })
+        var vm = new Vue({
+            el: '#app',
+            data: {
+                msg: '我曾经跨过山和大海',
+            },
+            methods: {}
+        });
+    </script>
+</body>
+
+</html>
