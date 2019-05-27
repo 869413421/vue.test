@@ -11,22 +11,24 @@
 
 <body>
     <div id="app">
-        <p>{{msg|strFormat('我是添加的')|test}}</p>
+        <h1>{{msg}}</h1>
+        <my_component></my_component>
     </div>
     <script>
-        Vue.filter('strFormat', function (msg, arg1) {
-            return msg.replace(/山/g, '屎') + arg1
-        })
-        Vue.filter('test', function (data) {
-            return data + '============'
+        Vue.component('my_component', {
+            template: '<button @click="handleChang" value="">修改</button>',
+            methods: {
+                handleChang() {
+                    this.$parent.msg = '修改成功';
+                }
+            }
         })
         var vm = new Vue({
             el: '#app',
             data: {
-                msg: '我曾经跨过山和大海',
+                msg: ''
             },
-            methods: {},
-            begore
+            methods: {}
         });
     </script>
 </body>

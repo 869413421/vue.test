@@ -1,0 +1,59 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Document</title>
+    <script src="https://cdn.jsdelivr.net/npm/vue"></script>
+</head>
+
+<body>
+    <div id="app"></div>
+    <script>
+        var vm = new Vue({
+            el: '#app',
+            data: {},
+            methods: {},
+            //这是第一个执行的生命周期函数
+            //在Vue实例被创建前会执行的函数,vue对象中的所有数据都没有被初始化
+            beforeCreate() {
+
+            },
+            //这是第二个执行的生命周期函数
+            //在此之前vue对象里面的数据已经被初始化好了，能在此函数中调用
+            created() {
+
+            },
+            //这是第三个生命周期函数
+            //这个时候已经将el指向的元素块编译成模板放到内存当中，但是并没有直接渲染到页面上
+            beforeMount() {
+
+            },
+            //最后一个生命周期函数
+            //在这个方法中我们的元素已经完全地渲染到了浏览器当中，我们可以在此之后的函数中进行dom操作
+            mounted() {
+
+            },
+            //当元素即将被更新被渲染到页面上时触发，但是并未和页面上最新的数据进行同步
+            beforeUpdate() {
+
+            },
+            //当data的数据发生改变并且已经完全同步到页面中后会执行这个函数
+            updated() {
+
+            },
+            //在vue对象即将被删除时触发，正式进入销毁阶段，但是对象中的数据依然处于可以被使用的状态
+            beforeDestroy() {
+
+            },
+            //vue对象已经完全被销毁,这个时候vue中的所有数据已经处于不可使用的状态
+            destroyed() {
+
+            },
+        });
+    </script>
+</body>
+
+</html>

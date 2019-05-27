@@ -7,26 +7,26 @@
     <meta http-equiv="X-UA-Compatible" content="ie=edge">
     <title>Document</title>
     <script src="https://cdn.jsdelivr.net/npm/vue"></script>
+    <link rel="stylesheet" type="text/css" href="http://www.jq22.com/jquery/animate-3.1.0.min.css">
 </head>
 
 <body>
     <div id="app">
-        <p>{{msg|strFormat('我是添加的')|test}}</p>
+        <input type="button" value="点击" @click="flag=!flag">
+
+        <transition entre-active-class="bounceIn" leave-active-class="bounceOut"
+            :duration={enter-active:200,leave-active:200}>
+            <h3 v-if="flag">这是一个动画</h3>
+        </transition>
+
     </div>
     <script>
-        Vue.filter('strFormat', function (msg, arg1) {
-            return msg.replace(/山/g, '屎') + arg1
-        })
-        Vue.filter('test', function (data) {
-            return data + '============'
-        })
         var vm = new Vue({
             el: '#app',
             data: {
-                msg: '我曾经跨过山和大海',
+                flag: false,
             },
-            methods: {},
-            begore
+            methods: {}
         });
     </script>
 </body>

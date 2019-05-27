@@ -11,22 +11,21 @@
 
 <body>
     <div id="app">
-        <p>{{msg|strFormat('我是添加的')|test}}</p>
+        <my_component>
+            <template scope="props">
+                <h1>这是父类的内容</h1>
+                <h1>{{props.message}}</h1>
+            </template>
+        </my_component>
     </div>
     <script>
-        Vue.filter('strFormat', function (msg, arg1) {
-            return msg.replace(/山/g, '屎') + arg1
-        })
-        Vue.filter('test', function (data) {
-            return data + '============'
+        Vue.component('my_component', {
+            template: '<div><slot message="这是组件内的"></slot></div>'
         })
         var vm = new Vue({
             el: '#app',
-            data: {
-                msg: '我曾经跨过山和大海',
-            },
-            methods: {},
-            begore
+            data: {},
+            methods: {}
         });
     </script>
 </body>

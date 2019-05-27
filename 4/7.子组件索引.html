@@ -1,0 +1,39 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Document</title>
+    <script src="https://cdn.jsdelivr.net/npm/vue"></script>
+</head>
+
+<body>
+    <div id="app">
+        <my_component ref="Cvm"></my_component>
+        <input type="button" @click="handleChangChiled">
+    </div>
+    <script>
+        Vue.component('my_component', {
+            template: '<h1>{{msg}}</h1>',
+            data() {
+                return {
+                    msg: ''
+                }
+            }
+        })
+        var vm = new Vue({
+            el: '#app',
+            data: {},
+            methods: {
+                handleChangChiled() {
+                    //获取子组件索引
+                    this.$refs.Cvm.msg = '修改子组件变量'
+                }
+            }
+        });
+    </script>
+</body>
+
+</html>

@@ -1,0 +1,58 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Document</title>
+    <script src="https://cdn.jsdelivr.net/npm/vue"></script>
+</head>
+
+<body>
+    <div id="app">
+        <input type="text" v-model="count">
+        <!--isadd监听事件并将参数交给handleGetTotal方法进行处理-->
+        <my_component @isadd="handleGetTotal" @isrude="handleGetTotal"></my_component>
+    </div>
+    <script>
+        Vue.component('my_component', {
+            template: '<div>\
+            <button @click="add">+</button>\
+            <button @click="redu">-</button>\
+            </div>',
+            data: function () {
+                return {
+                    count1: 0,
+                }
+            },
+            methods: {
+                add() {
+                    this.count1++;
+                    console.log(this.count1);
+                    //将事件分发到组件isadd事件中并且传递count1参数
+                    this.$emit('isadd', this.count1);
+                },
+                redu() {
+                    this.count1--;
+                    console.log(this.count1);
+                    //将事件分发到组件isadd事件中并且传递count1参数
+                    this.$emit('isrude', this.count1)
+                }
+            }
+        });
+        var vm = new Vue({
+            el: '#app',
+            data: {
+                count: 0,
+            },
+            methods: {
+                handleGetTotal(total) {
+                    this.count = total;
+                }
+            }
+        });
+    </script>
+</body>
+
+</html>

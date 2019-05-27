@@ -7,26 +7,34 @@
     <meta http-equiv="X-UA-Compatible" content="ie=edge">
     <title>Document</title>
     <script src="https://cdn.jsdelivr.net/npm/vue"></script>
+    <style>
+        .v-enter,
+        .v-leave-to {
+            opacity: 0;
+            transform: translateX(300px);
+        }
+
+        .v-enter-active,
+        .v-leave-active {
+            transition: all 1s ease
+        }
+    </style>
 </head>
 
 <body>
     <div id="app">
-        <p>{{msg|strFormat('我是添加的')|test}}</p>
+        <input type="button" value="点击" @click="flag=!flag">
+        <transition>
+            <h3 v-if="flag">这是一个动画</h3>
+        </transition>
     </div>
     <script>
-        Vue.filter('strFormat', function (msg, arg1) {
-            return msg.replace(/山/g, '屎') + arg1
-        })
-        Vue.filter('test', function (data) {
-            return data + '============'
-        })
         var vm = new Vue({
             el: '#app',
             data: {
-                msg: '我曾经跨过山和大海',
+                flag: false,
             },
-            methods: {},
-            begore
+            methods: {}
         });
     </script>
 </body>

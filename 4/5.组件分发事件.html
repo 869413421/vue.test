@@ -1,0 +1,52 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Document</title>
+    <script src="https://cdn.jsdelivr.net/npm/vue"></script>
+</head>
+
+<body>
+    <div id="app">
+        <my_component_a></my_component_a>
+        <input type="text" v-model='msg'>
+        {{msg}}
+    </div>
+    <script>
+        Vue.component('my_component_a', {
+            template: '<button @click="handleDisplatch">分发数据</button>',
+            data() {
+                return {
+                    message: '组件分发的信息'
+                }
+            },
+            methods: {
+                handleDisplatch() {
+                    eventHub.$emit('message', this.message);
+                    console.log(this.message);
+                }
+            }
+        })
+        var eventHub = new Vue();
+        var vm = new Vue({
+            el: '#app',
+            data: {
+                //作为事件中转的对象
+                msg: '111',
+            },
+            methods: {},
+            created() {
+                eventHub.$on('message', (message) => {
+                    this.msg += message;
+                    console.log(this.msg);
+                })
+            },
+
+        });
+    </script>
+</body>
+
+</html>
