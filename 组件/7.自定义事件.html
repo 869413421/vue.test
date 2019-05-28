@@ -1,0 +1,59 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Document</title>
+    <script src="https://unpkg.com/vue/dist/vue.min.js"></script>
+</head>
+
+<body>
+    <div id="app">
+        <input type="text" v-model="total">
+        <my_component num="0" @add="handleGetToatl" @rude='handleGetToatl'></my_component>
+    </div>
+    <script>
+        Vue.component('my_component',{
+        template:'<div>\
+            <button @click="handleAdd">+</button>\
+            <button @click="handleRude">-</button>\
+            </div>\
+       ',
+       props:{
+            num:[Number]
+       },
+       data(){
+            return {
+                count:this.num
+            }
+       },
+       methods:{
+            handleAdd(){
+                this.count++;
+                //将事件分发到add中并且传递this.count
+                this.$emit('add', this.count)
+            },
+            handleRude(){
+                this.count--;
+                //将事件分发到rude中并且传递this.count
+                this.$emit('rude', this.count)
+            },
+       }
+        });
+        var vm=new Vue({
+           el:'#app',
+           data:{
+               total:0
+           },
+           methods:{
+               handleGetToatl(total){
+                    this.total=total;
+               }
+           }
+        });
+    </script>
+</body>
+
+</html>

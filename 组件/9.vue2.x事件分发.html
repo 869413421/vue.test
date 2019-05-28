@@ -1,0 +1,58 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Document</title>
+    <script src="https://unpkg.com/vue/dist/vue.min.js"></script>
+</head>
+
+<body>
+    <div id="app">
+        <my_component1></my_component1>
+        <my_component2></my_component2>
+    </div>
+    <script>
+
+        Vue.component('my_component1',{
+            template:'<button @click="handleDisptach">分发数据</button>',
+            data(){
+                return {
+                    msg:'分发的数据',
+                }
+            },
+            methods:{
+                handleDisptach()
+                {
+                    this.$root.eventHub.$emit('event_msg',this.msg);
+                }
+            }
+        });
+
+        Vue.component('my_component2',{
+            template:'<h1>1{{msg}}1<h1>',
+            data(){
+                return {
+                    msg:''
+                }
+            },
+            created() {
+                this.$root.eventHub.$on('event_msg',(msg)=>{
+                    this.msg=msg;
+                });
+            },
+        });
+
+        var vm=new Vue({
+           el:'#app',
+           data:{
+               eventHub:new Vue(),
+           },
+           methods:{}
+        });
+    </script>
+</body>
+
+</html>

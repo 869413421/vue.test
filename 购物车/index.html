@@ -1,0 +1,46 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Document</title>
+    <link rel="stylesheet" href="style.css">
+</head>
+
+<body>
+    <div id="app" v-cloak>
+        <template v-if="list.length">
+            <table>
+                <thead>
+                    <tr>
+                        <th>ID</th>
+                        <th>名称</th>
+                        <th>价格</th>
+                        <th>数量</th>
+                        <th>操作</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <tr v-for="(item, index) in list" :key="item.id">
+                        <th>{{item.id}}</th>
+                        <th>{{item.name}}</th>
+                        <th>{{item.price}}</th>
+                        <th>{{item.count}}</th>
+                        <th><button :disabled="item.count==1" @click="reduce(index)">-</button></th>
+                        <th><button @click="add(index)">+</button></th>
+                        <th><button @click="remove(index)">移除</button></th>
+                    </tr>
+                </tbody>
+            </table>
+            <div>{{totalPrice}}</div>
+        </template>
+        <h1 v-else>暂无数据</h1>
+    </div>
+
+    <script src="https://unpkg.com/vue/dist/vue.min.js"></script>
+    <script src="index.js"></script>
+</body>
+
+</html>

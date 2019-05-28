@@ -1,0 +1,36 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Document</title>
+    <script src="https://unpkg.com/vue/dist/vue.min.js"></script>
+</head>
+
+<body>
+    <div id="app">
+        <my_component>
+            <h1 slot="head">头部</h1>
+            <h1>身体</h1>
+            <h1 slot="foot">脚</h1>
+        </my_component>
+    </div>
+    <script>
+        Vue.component('my_component',{
+            template:'\
+            <div>\
+            <slot name="head"></slot>\
+            <slot>嘻嘻嘻</slot>\
+            <slot name="foot"></slot>',
+        });
+        var vm=new Vue({
+           el:'#app',
+           data:{},
+           methods:{}
+        });
+    </script>
+</body>
+
+</html>

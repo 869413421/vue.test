@@ -1,0 +1,37 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Document</title>
+    <script src="https://unpkg.com/vue/dist/vue.min.js"></script>
+</head>
+
+<body>
+    <div id="app">
+        <my_component>
+            <template scope="props">
+                    <h1>来自父组件的消息</h1>
+                    <h1>{{props.msg}}</h1>
+                    <h1>{{props.contetn}}</h1>
+            </template>
+        </my_component>
+    </div>
+    <script>
+        Vue.component('my_component',{
+            template:'\
+            <div>\
+            <slot msg="来自子组件的消息" contetn="这是来自组件的内容"></slot>\
+            </div>'
+        })
+        var vm=new Vue({
+           el:'#app',
+           data:{},
+           methods:{}
+        });
+    </script>
+</body>
+
+</html>

@@ -1,0 +1,39 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Document</title>
+    <script src="https://unpkg.com/vue/dist/vue.min.js"></script>
+</head>
+
+<body>
+    <div id="app">
+        <input type="text" v-model="someString">
+        <my-component :message="someString" count="100"></my-component>
+    </div>
+    <script>
+        //数据传递是通过父组件传递到子组件，不允许子组件传递给父组件
+        Vue.component('my-component',{
+            props:['message','count'],
+            template:'<h1>{{message1}}{{count1}}</h1>',
+            data(){
+                return{
+                    message1:this.message,
+                    count1:this.count
+                }
+            }
+        })
+        var vm=new Vue({
+           el:'#app',
+           data:{
+               someString:'sadsad '
+           },
+           methods:{}
+        });
+    </script>
+</body>
+
+</html>

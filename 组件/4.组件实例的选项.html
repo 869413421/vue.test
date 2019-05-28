@@ -1,0 +1,44 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Document</title>
+    <script src="https://unpkg.com/vue/dist/vue.min.js"></script>
+</head>
+
+<body>
+    <div id="app">
+        <my-component></my-component>
+    </div>
+    <script>
+        //组件具备和vue同样的内部选项，但是data必须要通过return返回
+        Vue.component('my-component',{
+            template:'<h1>{{message|dataFormart}}</h1>',
+            methods:{
+
+            },
+            data(){
+                return {
+                    message:'这是经过内部使用的属性'
+                }
+            },
+            computed: {
+                
+            },
+        })
+
+        Vue.filter('dataFormart',(value)=>{
+            return value+'===============';
+        })
+        var vm=new Vue({
+           el:'#app',
+           data:{},
+           methods:{}
+        });
+    </script>
+</body>
+
+</html>

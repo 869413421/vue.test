@@ -1,0 +1,44 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Document</title>
+    <script src="https://unpkg.com/vue/dist/vue.min.js"></script>
+</head>
+
+<body>
+    <div id="app">
+        <h1>{{msg}}</h1>
+        <my_component message="修改后的数据"></my_component>
+    </div>
+    <script>
+
+        Vue.component('my_component',{
+            props:['message'],
+            template:'<input type="button" @click="handleChang" value="修改父类的值">',
+            data(){
+                return {
+                    msg:this.message
+                }
+            },
+            methods:{
+                handleChang(){
+                    this.$parent.msg=this.msg;
+                }
+            }
+        });
+
+        var vm=new Vue({
+           el:'#app',
+           data:{
+               msg:''
+           },
+           methods:{}
+        });
+    </script>
+</body>
+
+</html>
