@@ -1,0 +1,46 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Document</title>
+    <script src="https://unpkg.com/vue/dist/vue.min.js"></script>
+    <script src="https://unpkg.com/vue-router/dist/vue-router.js"></script>
+</head>
+
+<body>
+    <div id="app">
+        <router-link to="/login?id=10&name=xiaoming">登陆</router-link>
+        <router-link to="/register">注册</router-link>
+        <router-view></router-view>
+    </div>
+    <script>
+    
+        var login={
+            //当前对象的$route可以获取到指定路由的对象
+            template:'<h1>登陆{{$route.query.id}}{{$route.query.name}}</h1>',
+        }
+
+        var register={
+            template:'<h1>注册</h1>'
+        }
+
+        const routeObj = new VueRouter({
+            routes:[
+                {'path':"/",redirect:'/login'},
+                {'path':"/login",component:login},
+                {'path':"/register",component:register}
+            ]
+        })
+        var vm=new Vue({
+           el:'#app',
+           data:{},
+           methods:{},
+           router:routeObj
+        });
+    </script>
+</body>
+
+</html>
